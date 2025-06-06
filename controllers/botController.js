@@ -76,6 +76,17 @@ exports.createBot = async (req, res) => {
   const queryString = `request=${JSON.stringify(payload)}`;
   const signature = getSignature(queryString);
 
+  // Debug logging
+  console.log("--- 3Commas Bot Creation Debug ---");
+  console.log("Endpoint:", endpoint);
+  console.log("Payload:", JSON.stringify(payload));
+  console.log("QueryString:", queryString);
+  console.log("Signature:", signature);
+  console.log("Headers:", {
+    APIKEY: THREE_COMMAS_API_KEY,
+    Signature: signature,
+  });
+
   try {
     const response = await axios.post(endpoint, payload, {
       headers: {
